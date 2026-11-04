@@ -1,0 +1,15 @@
+import { useState } from 'react';
+import type { FormEvent } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Icon from '../components/Icon';
+import { useAuth } from '../contexts/AuthContext';
+import { traduzirErro } from '../utils/erros';
+
+export default function Login() {
+  const { user, isLoading, login } = useAuth(); const navigate = useNavigate();
+  const [username, setUsername] = useState(''); const [password, setPassword] = useState(''); const [error, setError] = useState(''); const [isSubmitting, setIsSubmitting] = useState(false);
+  if (isLoading) return <div className="auth-loading"><span className="spinner" /> Verificando sua sessão...</div>;
+  if (user) return <Navigate to="/" replace />;
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setError(''); setIsSubmitting(true); try { await login({ username, password }); navigate('/', { replace: true }); } catch (requestError) { setError(traduzirErro(requestError, 'login')); } finally { setIsSubmitting(false); } }
+  return <main className="auth-layout"><section className="auth-showcase"><div className="showcase-brand"><div className="brand-mark">FF</div><strong>Fjord &amp; Fogo</strong></div><div className="showcase-copy"><span className="eyebrow light">Gestão sem complicação</span><h1>O sabor começa<br /><em>na organização.</em></h1><p>Tenha o controle da sua operação e deixe cada detalhe do seu cardápio no lugar.</p></div><div className="showcase-foot"><span>Feito para quem faz acontecer</span><span>✦</span></div></section><section className="auth-card" aria-labelledby="login-title"><div className="mobile-brand"><div className="brand-mark">FF</div><strong>Fjord &amp; Fogo</strong></div><span className="section-kicker">Área do restaurante</span><h2 id="login-title">Boas-vindas de volta</h2><p className="muted">Entre para acessar o painel da sua operação.</p><form onSubmit={handleSubmit} className="form-stack"><div className="field"><label htmlFor="username">Usuário</label><input id="username" value={username} onChange={(event) => setUsername(event.target.value)} required autoComplete="username" placeholder="Digite seu usuário" /></div><div className="field"><div className="field-label-row"><label htmlFor="password">Senha</label><button type="button" className="forgot-link" onClick={() => setError('Use as credenciais de demonstração do projeto para entrar.')}>Esqueceu a senha?</button></div><input id="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required autoComplete="current-password" placeholder="Digite sua senha" /></div>{error && <p className="error-message" role="alert">{error}</p>}<button className="button button-primary button-full" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Entrando...' : <>Entrar no painel <Icon name="arrow" /></>}</button></form><p className="login-hint"><Icon name="check" /> Ambiente de demonstração protegido</p></section></main>;
+}

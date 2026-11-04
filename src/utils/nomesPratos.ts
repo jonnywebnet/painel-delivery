@@ -1,0 +1,36 @@
+const nomesEmPortugues: Record<string, string> = {
+  'classic margherita pizza': 'Gravlax de Salmão',
+  'vegetarian stir-fry': 'Smørrebrød de Ervas',
+  'chocolate chip cookies': 'Kanelbullar de Cardamomo',
+  'chicken biryani': 'Almôndegas à Sueca',
+  'mexican chicken tacos': 'Arenque com Batatas',
+  'beef and broccoli stir-fry': 'Ensopado de Carne e Raízes',
+  'strawberry oatmeal': 'Mingau de Aveia e Frutas',
+  'japanese ramen': 'Sopa Cremosa de Salmão',
+  'blueberry muffins': 'Muffin de Mirtilo Silvestre',
+  'grilled salmon': 'Salmão do Fiorde',
+  'mango salsa': 'Salada de Raízes e Endro',
+  'caprese salad': 'Salada de Pepino em Conserva',
+  'quinoa salad': 'Salada de Cevada e Ervas',
+  'thai green curry': 'Caldeirada de Bacalhau',
+  'korean bibimbap': 'Tigela de Salmão e Raízes',
+  'tomato basil bruschetta': 'Pão de Centeio com Cogumelos',
+  'spaghetti carbonara': 'Cevada Cremosa com Cogumelos',
+  'greek salad': 'Salada Nórdica de Beterraba',
+  'chicken alfredo pasta': 'Frango ao Molho de Mostarda',
+  'vegetable sushi rolls': 'Rolinhos de Pepino e Salmão',
+  'beef tacos': 'Carne ao Molho de Zimbro',
+  'coconut chicken curry': 'Frango com Endro e Limão',
+  'caesar salad': 'Folhas com Salmão Defumado',
+  'shrimp scampi pasta': 'Camarões do Mar do Norte',
+  ratatouille: 'Legumes Assados do Norte',
+  'chicken noodle soup': 'Sopa de Salmão e Endro',
+  'fish and chips': 'Peixe Crocante com Raízes',
+  'pad thai': 'Macarrão de Centeio com Ervas',
+  'margherita pizza': 'Torta Nórdica de Cogumelos',
+  tiramisu: 'Creme de Cardamomo e Café',
+};
+
+export function traduzirNomeDoPrato(name: string): string {
+  return nomesEmPortugues[name.trim().toLowerCase()] ?? name;
+}
