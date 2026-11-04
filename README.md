@@ -1,23 +1,36 @@
-# Fjord & Fogo · Painel do restaurante
+# Fjord & Fogo - Painel do restaurante
 
-Frontend de demonstraÃ§Ã£o de um painel de delivery para gestÃ£o de restaurante, desenvolvido com React, TypeScript e Vite. O projeto Ã© um protÃ³tipo acadÃªmico: nÃ£o possui backend prÃ³prio e utiliza o DummyJSON como API pÃºblica simulada.
+Projeto acadêmico individual da disciplina Laboratório de Programação Front End,
+desenvolvido com React, TypeScript e Vite.
 
-## O que foi implementado
+**Autor:** Jhonatan Gomes  
+**Repositório:** https://github.com/jonnywebnet/painel-delivery
 
-- Login com `POST /auth/login`, token persistido no `localStorage` e restauraÃ§Ã£o de sessÃ£o com `GET /auth/me`;
-- Rota protegida com React Router e logout;
-- Dashboard inicial com indicadores, pedidos recentes e avaliaÃ§Ã£o do restaurante;
-- GestÃ£o de cardÃ¡pio com busca, filtro por cozinha e contagem de resultados;
-- Listagem de pratos com imagem, categoria, preÃ§o calculado e tempo de preparo;
-- CriaÃ§Ã£o, ediÃ§Ã£o e exclusÃ£o com confirmaÃ§Ã£o;
-- AtualizaÃ§Ã£o imediata do estado local apÃ³s as operaÃ§Ãµes simuladas da API;
-- Tratamento visual de carregamento, lista vazia, validaÃ§Ã£o e erros HTTP;
-- Interface mobile-first, sem rolagem lateral em telas estreitas;
-- Componentes reutilizÃ¡veis em `src/components/` e serviÃ§os HTTP isolados em `src/services/`.
+## Sobre o projeto
+
+Painel de gerenciamento de cardápio para um restaurante parceiro de delivery.
+O sistema permite autenticar o responsável pelo restaurante, visualizar pratos,
+buscar por nome ou cozinha, cadastrar, editar e excluir itens do cardápio.
+
+As operações usam a API pública DummyJSON. Como a API simula as alterações, o
+frontend atualiza o estado local depois de cada operação bem-sucedida.
+
+## Funcionalidades
+
+- Login com `POST /auth/login`;
+- Persistência e restauração da sessão com token;
+- Rota protegida e logout;
+- Listagem de pratos com foto, cozinha, tempo e preço calculado;
+- Busca por nome;
+- Filtro por cozinha;
+- Cadastro, edição e exclusão com confirmação;
+- Estados de carregamento, erro e lista vazia;
+- Interface responsiva para telas estreitas.
 
 ## Stack
 
-- React 19 + TypeScript;
+- React 19;
+- TypeScript;
 - Vite;
 - React Router DOM;
 - Axios;
@@ -25,10 +38,15 @@ Frontend de demonstraÃ§Ã£o de um painel de delivery para gestÃ£o de restau
 
 ## Como executar
 
-Instale as dependÃªncias e inicie o servidor de desenvolvimento:
+Instale as dependências:
 
 ```bash
 npm install
+```
+
+Inicie o servidor de desenvolvimento:
+
+```bash
 npm run dev
 ```
 
@@ -38,21 +56,22 @@ A URL da API fica configurada no arquivo `.env`:
 VITE_API_URL=https://dummyjson.com
 ```
 
-## Acesso de demonstração
+## Credenciais de demonstração
 
-O login utiliza as credenciais de demonstração da API pública definidas no enunciado do projeto. A autenticação, o armazenamento do token e a restauração da sessão continuam sendo feitos pelo frontend, sem backend próprio.
+- Usuário: `emilys`
+- Senha: `emilyspass`
 
-## Regra de preÃ§o
+## Regra de preço
 
-A API nÃ£o fornece preÃ§o. O painel calcula o valor de cada prato com a regra do trabalho:
+A API não fornece preço. O painel calcula o valor usando a regra do trabalho:
 
 ```text
-preÃ§o = 15 + 0,50 Ã— (tempo de preparo + tempo de cozimento)
+preço = 15 + 0,50 × (tempo de preparo + tempo de cozimento)
 ```
 
-As operaÃ§Ãµes de criaÃ§Ã£o, ediÃ§Ã£o e exclusÃ£o do DummyJSON sÃ£o simuladas e nÃ£o persistem apÃ³s um recarregamento da pÃ¡gina. Por isso, o frontend atualiza o estado local depois de cada operaÃ§Ã£o bem-sucedida.
+O preço é exibido em reais.
 
-## Build de produÃ§Ã£o
+## Build de produção
 
 ```bash
 npm run build
